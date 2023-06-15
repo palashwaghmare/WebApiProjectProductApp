@@ -13,8 +13,10 @@ using AutoMapper;
 
 namespace WebApiProject.Controllers
 {
-    [Route("api/[controller]/GetProduct")]
     [ApiController]
+    [Route("api/[controller]")]
+
+    
     public class ProductsController : ControllerBase
     {
         private readonly IProductRepository _productRepository;
