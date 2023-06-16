@@ -16,7 +16,8 @@ namespace WebApiProject.AppDbContext
 
         [JsonIgnore]
         public Product Products { get; set; }
-
+        
+        
 
 
     }

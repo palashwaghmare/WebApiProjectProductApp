@@ -1,10 +1,11 @@
 ﻿
 
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApiProject.AppDbContext
 {
-    public class AppsDbContext: DbContext
+    public class AppsDbContext: IdentityDbContext<APIUser>
     {
         public AppsDbContext(DbContextOptions<AppsDbContext> Context):base(Context)
         {
@@ -15,16 +16,18 @@ namespace WebApiProject.AppDbContext
 
         public DbSet<Product> Products { get; set; }
 
+        public DbSet<APIUser> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Product>()
-                .HasMany(u => u.bookings)
+                .HasMany(p => p.bookings)
                 .WithOne(b => b.Products)
                 .HasForeignKey(b => b.ProductId);
 
+            
         }
 
 
