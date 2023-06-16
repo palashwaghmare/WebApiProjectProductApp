@@ -10,6 +10,9 @@ namespace WebApiClient.Configurations
         {
             CreateMap<Product,CreateProductDTO>().ReverseMap();
             CreateMap<Product, GetProductDTO>().ReverseMap();
+            CreateMap<APIUser,APIUserDTO>().ReverseMap();
+            CreateMap<Bookings, GetBookingDTO>().ReverseMap();
+
         }
     }
 }

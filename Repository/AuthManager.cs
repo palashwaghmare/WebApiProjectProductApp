@@ -95,7 +95,7 @@ namespace WebApiProject.Repository
                 audience: _configuration["JwtSetting:Audience"],
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(Convert.ToInt64(_configuration["JwtSetting:DurationInMinutes"])),
-                signingCredentials: credentials
+            signingCredentials: credentials
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
 
@@ -103,12 +103,13 @@ namespace WebApiProject.Repository
 
         public async Task<IEnumerable<IdentityError>> RegisterUser(APIUserDTO userDto)
         {
-            var user = _mapper.Map<APIUser>(userDto);
-            user.UserName = userDto.Email;
-            var result = await _userManager.CreateAsync(user, userDto.Password);
+            var newuser = _mapper.Map<APIUser>(userDto);
+            //user.FirstName = userDto.FirstName;
+            newuser.UserName = userDto.Email;
+            var result = await _userManager.CreateAsync(newuser, userDto.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "User");
+                await _userManager.AddToRoleAsync(newuser, "User");
             }
             return result.Errors;
         }

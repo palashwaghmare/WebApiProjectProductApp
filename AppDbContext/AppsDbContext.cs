@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebApiProject.AppDbContext.Configurations;
 
 namespace WebApiProject.AppDbContext
 {
@@ -21,6 +22,7 @@ namespace WebApiProject.AppDbContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new RolesConfiguration());
 
             modelBuilder.Entity<Product>()
                 .HasMany(p => p.bookings)

@@ -34,7 +34,10 @@ namespace WebApiProject
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IBookingsRepository, BookingsRepository>();
+
             builder.Services.AddAuthentication(options =>
+
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -52,6 +55,7 @@ namespace WebApiProject
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSetting:Key"]))
                 };
             });
+
 
 
 
